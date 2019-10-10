@@ -8,6 +8,7 @@ int main() {
 	myLinkList.insert(10);
 	myLinkList.back();
 	myLinkList.insert(60);
+	myLinkList.insertAtBegin(20);
 	myLinkList.insert(60);
 	myLinkList.display();
 
