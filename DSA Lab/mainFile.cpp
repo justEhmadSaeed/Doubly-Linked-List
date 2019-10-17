@@ -12,8 +12,19 @@ int main() {
 	myLinkList.insert(60);
 	myLinkList.display();
 
+	
 	myLinkList.deleteByValue(60);
-
 	myLinkList.display();
+	myLinkList.deleteByValue(20);
+	myLinkList.display();
+	myLinkList.deleteByValue(60);
+	myLinkList.display();
+	myLinkList.deleteByValue(10);
+	myLinkList.display();
+	myLinkList.deleteByValue(10);
+	myLinkList.display();
+	myLinkList.insert(10);
+	myLinkList.display();
+
 	system("pause");
 }

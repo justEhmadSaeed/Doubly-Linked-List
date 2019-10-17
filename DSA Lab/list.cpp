@@ -57,47 +57,37 @@ public:
 
 		start();
 		for (int i = 0; i < size; i++) {
-			if (current->getValue() == val) {	// if programs matches argument with nodes' values
-				if (current->getNext() != 0)	// if target node is not at the end 
-					if (current == head)		// if target node is head node
-					{
 
-						Node* nn = new Node();
-						nn = current->getNext();
-						delete current;
-						current = nn;
-						head = current;
-						current->setPrev(0);
-					}
-
-					else {
-						// if target node is somewhere in the middle of list
-						Node* nn = current->getPrev();
+			if (current->getValue() == val) {	// if argument value is found in the list
+				if (size == 1) {	// if there's only one node
+					head = NULL;
+					delete current;
+					current = head;
+				}
+				else {	// if there are more than one nodes on the list
+					
+					Node* nn = current->getNext();
+					// only if target node is not head, because if target node is head, 
+					// then there would be no previous node
+					if (current != head)
 						(current->getPrev())->setNext(current->getNext());
+
+					else	// if target node is head then future head will be the node, next to current
+						head = current->getNext();
+
+					// only if target node is not the last node,
+					// we will set previous pointer of the next node to the previous node
+					if (current->getNext())
 						(current->getNext())->setPrev(current->getPrev());
-						delete current;
-						current = nn;
-					}
-				else {
-
-					if (size == 1) {	// target could be at the last and the least
-						head = NULL;
-						delete current;
-						current = head;
-					}
-					else {	// if target node is at last but other nodes are also present
-
-						Node* nn = new Node();
-						nn->setPrev(current->getPrev());
-						delete current;
-						current = nn;
-					}
-					current->setNext(0);
+					else
+						nn = current->getPrev();	// cause there would be no current's next node
+					delete current;
+					current = nn;
 				}
 				size--;
 				break;
 			}
-			forward();	// to make it move further a step in linked list
+			forward();	// to make it move further a step ahead in the Linked List
 		}
 	}
 	void start() {
@@ -123,7 +113,10 @@ public:
 
 	// To get the value of Current Node
 	int get() {
-		return	current->getValue();
+		if (current != 0)	// if list is not empty	
+			return	current->getValue();
+		else
+			return 0;
 	}
 
 	// To display All the values of Nodes
